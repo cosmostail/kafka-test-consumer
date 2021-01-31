@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class Person extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 4483137075384154363L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Person\",\"namespace\":\"KafkaTest\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"first_name\",\"type\":\"string\"},{\"name\":\"last_name\",\"type\":\"string\"},{\"name\":\"email\",\"type\":\"string\"}]}");
+  private static final long serialVersionUID = 3870164726815959735L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Person\",\"namespace\":\"KafkaTest\",\"fields\":[{\"name\":\"id\",\"type\":\"int\"},{\"name\":\"first_name\",\"type\":\"string\"},{\"name\":\"last_name\",\"type\":\"string\"},{\"name\":\"email\",\"type\":\"string\"},{\"name\":\"age\",\"type\":\"int\",\"default\":0}],\"compatibility\":\"BACKWARD\"}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -75,6 +75,7 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
    private java.lang.CharSequence first_name;
    private java.lang.CharSequence last_name;
    private java.lang.CharSequence email;
+   private int age;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -89,12 +90,14 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
    * @param first_name The new value for first_name
    * @param last_name The new value for last_name
    * @param email The new value for email
+   * @param age The new value for age
    */
-  public Person(java.lang.Integer id, java.lang.CharSequence first_name, java.lang.CharSequence last_name, java.lang.CharSequence email) {
+  public Person(java.lang.Integer id, java.lang.CharSequence first_name, java.lang.CharSequence last_name, java.lang.CharSequence email, java.lang.Integer age) {
     this.id = id;
     this.first_name = first_name;
     this.last_name = last_name;
     this.email = email;
+    this.age = age;
   }
 
   public org.apache.avro.specific.SpecificData getSpecificData() { return MODEL$; }
@@ -106,6 +109,7 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
     case 1: return first_name;
     case 2: return last_name;
     case 3: return email;
+    case 4: return age;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -118,6 +122,7 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
     case 1: first_name = (java.lang.CharSequence)value$; break;
     case 2: last_name = (java.lang.CharSequence)value$; break;
     case 3: email = (java.lang.CharSequence)value$; break;
+    case 4: age = (java.lang.Integer)value$; break;
     default: throw new IndexOutOfBoundsException("Invalid index: " + field$);
     }
   }
@@ -191,6 +196,23 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
   }
 
   /**
+   * Gets the value of the 'age' field.
+   * @return The value of the 'age' field.
+   */
+  public int getAge() {
+    return age;
+  }
+
+
+  /**
+   * Sets the value of the 'age' field.
+   * @param value the value to set.
+   */
+  public void setAge(int value) {
+    this.age = value;
+  }
+
+  /**
    * Creates a new Person RecordBuilder.
    * @return A new Person RecordBuilder
    */
@@ -235,6 +257,7 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
     private java.lang.CharSequence first_name;
     private java.lang.CharSequence last_name;
     private java.lang.CharSequence email;
+    private int age;
 
     /** Creates a new Builder */
     private Builder() {
@@ -263,6 +286,10 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
         this.email = data().deepCopy(fields()[3].schema(), other.email);
         fieldSetFlags()[3] = other.fieldSetFlags()[3];
       }
+      if (isValidValue(fields()[4], other.age)) {
+        this.age = data().deepCopy(fields()[4].schema(), other.age);
+        fieldSetFlags()[4] = other.fieldSetFlags()[4];
+      }
     }
 
     /**
@@ -286,6 +313,10 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
       if (isValidValue(fields()[3], other.email)) {
         this.email = data().deepCopy(fields()[3].schema(), other.email);
         fieldSetFlags()[3] = true;
+      }
+      if (isValidValue(fields()[4], other.age)) {
+        this.age = data().deepCopy(fields()[4].schema(), other.age);
+        fieldSetFlags()[4] = true;
       }
     }
 
@@ -448,6 +479,45 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
       return this;
     }
 
+    /**
+      * Gets the value of the 'age' field.
+      * @return The value.
+      */
+    public int getAge() {
+      return age;
+    }
+
+
+    /**
+      * Sets the value of the 'age' field.
+      * @param value The value of 'age'.
+      * @return This builder.
+      */
+    public KafkaTest.Person.Builder setAge(int value) {
+      validate(fields()[4], value);
+      this.age = value;
+      fieldSetFlags()[4] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'age' field has been set.
+      * @return True if the 'age' field has been set, false otherwise.
+      */
+    public boolean hasAge() {
+      return fieldSetFlags()[4];
+    }
+
+
+    /**
+      * Clears the value of the 'age' field.
+      * @return This builder.
+      */
+    public KafkaTest.Person.Builder clearAge() {
+      fieldSetFlags()[4] = false;
+      return this;
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public Person build() {
@@ -457,6 +527,7 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
         record.first_name = fieldSetFlags()[1] ? this.first_name : (java.lang.CharSequence) defaultValue(fields()[1]);
         record.last_name = fieldSetFlags()[2] ? this.last_name : (java.lang.CharSequence) defaultValue(fields()[2]);
         record.email = fieldSetFlags()[3] ? this.email : (java.lang.CharSequence) defaultValue(fields()[3]);
+        record.age = fieldSetFlags()[4] ? this.age : (java.lang.Integer) defaultValue(fields()[4]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -497,6 +568,8 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
 
     out.writeString(this.email);
 
+    out.writeInt(this.age);
+
   }
 
   @Override public void customDecode(org.apache.avro.io.ResolvingDecoder in)
@@ -512,8 +585,10 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
 
       this.email = in.readString(this.email instanceof Utf8 ? (Utf8)this.email : null);
 
+      this.age = in.readInt();
+
     } else {
-      for (int i = 0; i < 4; i++) {
+      for (int i = 0; i < 5; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           this.id = in.readInt();
@@ -529,6 +604,10 @@ public class Person extends org.apache.avro.specific.SpecificRecordBase implemen
 
         case 3:
           this.email = in.readString(this.email instanceof Utf8 ? (Utf8)this.email : null);
+          break;
+
+        case 4:
+          this.age = in.readInt();
           break;
 
         default:
